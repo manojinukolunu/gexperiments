@@ -15,10 +15,23 @@
         <activity
             android:name="com.example.game1exp.AndroidBasicsActivity"
             android:label="@string/title_activity_android_basics" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.game1exp.LifeCycleTest"
             android:label="@string/title_activity_life_cycle_test" >
+        </activity>
+        <activity
+            android:name="com.example.game1exp.SingleTouchTest"
+            android:label="@string/title_activity_single_touch_test" >
+        </activity>
+        <activity
+            android:name="com.example.game1exp.MultiTouchTest"
+            android:label="@string/title_activity_multi_touch_test" >
         </activity>
     </application>
 

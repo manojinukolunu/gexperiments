@@ -12,7 +12,7 @@ public class AndroidBasicsActivity extends ListActivity {
 	String tests[] = {
 			"LifeCycleTest",
 			"SingleTouchTest",
-			"MultoTouchTest",
+			"MultiTouchTest",
 			"ExternalStorageTest",
 			"SoundPoolTest",
 			"MediaPlayerTest",
@@ -26,7 +26,7 @@ public class AndroidBasicsActivity extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1));
+		setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,tests));
 	}
 	
 	@SuppressWarnings("rawtypes")
