@@ -58,20 +58,19 @@ public class MultiTouchHandler implements TouchHandler {
 						&& i != pointerIndex) {
 					// if it's an up/down/cancel/out event, mask
 					// the id to see if we should process it for this touch
-					//point
+					// point
 					continue;
-
 				}
-				switch(action){
+				switch (action) {
 				case MotionEvent.ACTION_DOWN:
-					//dont do anythign
+					// dont do anythign
 				case MotionEvent.ACTION_POINTER_DOWN:
 					touchEvent = touchEventPool.newObject();
 					touchEvent.type = TouchEvent.TOUCH_DOWN;
 					touchEvent.pointer = pointerId;
-					
-					touchEvent.x = touchX[i] = (int) (event.getX(i) *scaleX);
-					touchEvent.y = touchX[i] = (int) (event.getY(i) *scaleY);
+
+					touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
+					touchEvent.y = touchX[i] = (int) (event.getY(i) * scaleY);
 					isTouched[i] = true;
 					id[i] = pointerId;
 					touchEventsBuffer.add(touchEvent);
@@ -82,37 +81,82 @@ public class MultiTouchHandler implements TouchHandler {
 					touchEvent = touchEventPool.newObject();
 					touchEvent.type = TouchEvent.TOUCH_UP;
 					touchEvent.pointer = pointerId;
-					touchEvent.x = touchX[i] = (int) (event.getX(i)*scaleX);
-					touchEvent.y = touchX[i] = (int) (event.getY(i)*scaleY);
+					touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
+					touchEvent.y = touchX[i] = (int) (event.getY(i) * scaleY);
+					isTouched[i] = false;
+					id[i] = -1;
+					touchEvents.add(touchEvent);
+					break;
+				case MotionEvent.ACTION_MOVE:
+					touchEvent = touchEventPool.newObject();
+					touchEvent.type = TouchEvent.TOUCH_DRAGGED;
+					touchEvent.pointer = pointerId;
+					touchEvent.x = touchX[i] = (int) (event.getX(i) * scaleX);
+					touchEvent.y = touchY[i] = (int) (event.getY(i) * scaleY);
+					isTouched[i] = true;
+					id[i] = pointerId;
+					touchEventsBuffer.add(touchEvent);
+					break;
 				}
 			}
-
+			return true;	
 		}
-		return true;
+		
 	}
 
 	@Override
 	public boolean isTouchDown(int pointer) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		synchronized (this){
+			int index = getIndex(pointer);
+			if (index < 0 || index >=MAX_TOUCHPOINTS)
+				return false;
+			else
+				return isTouched[index];
+		}
 	}
 
 	@Override
 	public int getTouchX(int pointer) {
-		// TODO Auto-generated method stub
-		return 0;
+		synchronized(this){
+			int index = getIndex(pointer);
+			if (index < 0 || index >= MAX_TOUCHPOINTS)
+				return 0;
+			else return touchX[index];
+		}
 	}
 
 	@Override
 	public int getTouchY(int pointer) {
-		// TODO Auto-generated method stub
-		return 0;
+		synchronized(this){
+			int index = getIndex(pointer);
+			if (index < 0 || index >= MAX_TOUCHPOINTS)
+				return 0;
+			else return touchY[index];
+		}
 	}
 
 	@Override
 	public List<TouchEvent> getTouchEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		synchronized(this){
+			int len = touchEvents.size();
+			for (int i=0;i<len ; i++)
+				touchEventPool.free(touchEvents.get(i));
+			touchEvents.clear();
+			touchEvents.addAll(touchEventsBuffer);
+			touchEventsBuffer.clear();
+			return touchEvents;
+		}
+	}
+	
+	//returns the index for a given pointerId or -1 if no index
+	private int getIndex(int pointerid){
+		for (int i=0;i<MAX_TOUCHPOINTS;i++){
+			if (id[i] == pointerid){
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }
