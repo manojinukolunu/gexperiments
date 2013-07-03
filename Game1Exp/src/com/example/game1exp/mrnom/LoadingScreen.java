@@ -1,6 +1,7 @@
 package com.example.game1exp.mrnom;
 
 import com.example.game1exp.framework.Game;
+import com.example.game1exp.framework.Graphics;
 import com.example.game1exp.framework.Graphics.PixmapFormat;
 import com.example.game1exp.framework.Screen;
 
