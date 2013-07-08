@@ -2,6 +2,8 @@ package com.example.game1exp.mrnom;
 
 import java.util.List;
 
+import android.util.Log;
+
 import com.example.game1exp.framework.Game;
 import com.example.game1exp.framework.Graphics;
 import com.example.game1exp.framework.Screen;
@@ -61,6 +63,7 @@ public class MainMenuScreen extends Screen {
 
 	private boolean inBounds(TouchEvent event, int x, int y, int width,
 			int height) {
+		Log.d("In Bounds", "In Bounds");
 		if (event.x > x && event.x < x + width - 1 && event.y > y
 				&& event.y < y + height - 1)
 			return true;
