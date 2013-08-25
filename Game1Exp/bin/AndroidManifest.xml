@@ -23,7 +23,7 @@
 <!--             </intent-filter> -->
         </activity>
         <activity
-            android:name="com.example.game1exp.mrnom.MrNomGame"
+            android:name="com.example.game1exp.glbasics.FirstTriangleTest"
             android:label="Mr nom" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
