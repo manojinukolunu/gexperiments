@@ -7,29 +7,30 @@
     <uses-sdk
         android:minSdkVersion="3"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:hardwareAccelerated="true" android:largeHeap="false" android:persistent="false">
+        android:largeHeap="false"
+        android:persistent="false"
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.game1exp.AndroidBasicsActivity"
             android:label="@string/title_activity_android_basics" >
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
 
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name="com.example.game1exp.glbasics.FirstTriangleTest"
             android:label="Mr nom" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.game1exp.LifeCycleTest"
@@ -44,7 +45,7 @@
             android:label="@string/title_activity_multi_touch_test" >
         </activity>
         <activity
-            android:name="com.example.game1exp.KeyTest"
+            android:name="com.badlogic.andriodgames.KeyTest"
             android:label="@string/title_activity_key_test" >
         </activity>
         <activity
@@ -90,6 +91,23 @@
         <activity
             android:name="com.example.game1exp.SurfaceViewTest"
             android:label="@string/title_activity_surface_view_test" >
+        </activity>
+        <activity
+            android:name="com.badlogic.andriodgames.AndroidBasicsStarter"
+            android:label="@string/title_activity_android_basics_starter" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.badlogic.andriodgames.KeyTest1"
+            android:label="@string/title_activitybadlogic_key_test" >
+        </activity>
+        <activity
+            android:name="com.badlogic.andriodgames.ExternalStorage"
+            android:label="@string/title_activity_external_storage" >
         </activity>
     </application>
 

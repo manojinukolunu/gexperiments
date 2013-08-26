@@ -20,5 +20,8 @@
     <string name="title_activity_bitmap_test">BitmapTest</string>
     <string name="title_activity_font_test">FontTest</string>
     <string name="title_activity_surface_view_test">SurfaceViewTest</string>
+    <string name="title_activity_android_basics_starter">AndroidBasicsStarter</string>
+    <string name="title_activitybadlogic_key_test">KeyTest1</string>
+    <string name="title_activity_external_storage">ExternalStorage</string>
 
 </resources>
